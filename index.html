@@ -2,308 +2,379 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THE WHITE ROOM | Operational Constitution</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>THE WHITE ROOM | Elite Constitution</title>
     <meta name="description" content="الدستور الاستراتيجي لطبقة النخبة - منشأة الغرفة البيضاء.">
-    
-    <!-- الخطوط -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;600;800&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-    
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;600;900&family=Orbitron:wght@600;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <style>
         :root {
-            --bg-color: #020201;
-            --panel-color: #080808;
-            --accent-color: #ffffff;
-            --gold-color: #d4af37;
-            --danger-color: #ff3333;
-            --text-gray: #888888;
-            --border-style: 1px solid #1a1a1a;
+            --bg-pure: #020201;
+            --accent: #d4af37;
+            --panel-bg: #080808;
+            --border-color: #1a1a1a;
+            --text-clear: #b0b0b0;
+            --danger: #ff3333;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        *, *::before, *::after { box-sizing: border-box; }
 
         body {
-            background-color: var(--bg-color);
-            background-image: 
+            background-color: var(--bg-pure);
+            background-image:
                 linear-gradient(rgba(212, 175, 55, 0.05) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(212, 175, 55, 0.05) 1px, transparent 1px);
             background-size: 50px 50px;
-            color: var(--text-gray);
+            color: var(--text-clear);
             font-family: 'Cairo', sans-serif;
-            min-height: 100vh;
-            padding: 100px 20px;
-            display: flex;
-            justify-content: center;
-            position: relative;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            margin: 0; padding: 0;
         }
 
-        body::after {
-            content: " ";
-            display: block;
-            position: fixed;
-            top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(0,0,0,0) 50%, rgba(0,0,0,0.3) 50%), linear-gradient(90deg, rgba(212,175,55,0.02), rgba(0,0,0,0), rgba(255,255,255,0.02));
-            z-index: 9999;
-            background-size: 100% 4px, 8px 100%;
-            pointer-events: none;
+        /* ========== TICKER ========== */
+        .ticker-wrap {
+            background: #000; border-bottom: 1px solid var(--border-color);
+            padding: 10px 0; overflow: hidden; white-space: nowrap;
+        }
+        .ticker-content {
+            display: inline-block; animation: ticker-slide 35s linear infinite; will-change: transform;
+            font-family: 'Orbitron', sans-serif; font-size: 11px; letter-spacing: 3px;
+            color: var(--accent); text-transform: uppercase;
+        }
+        @keyframes ticker-slide {
+            0% { transform: translate3d(0,0,0); }
+            100% { transform: translate3d(50%,0,0); }
         }
 
-        .main-container { width: 100%; max-width: 1150px; z-index: 2; }
-
-        header { text-align: center; margin-bottom: 80px; position: relative; }
-        
-        h1 { 
-            font-family: 'Orbitron', sans-serif; 
-            font-size: 4.5rem; 
-            color: var(--accent-color); 
-            letter-spacing: 18px; 
-            margin-bottom: 15px;
-            text-shadow: 0 0 40px rgba(212, 175, 55, 0.15);
-            animation: textPulse 4s infinite alternate;
+        /* ========== HEADER ========== */
+        .sticky-header {
+            position: sticky; top: 0; z-index: 50;
+            background: rgba(0,0,0,0.7); backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-        
-        @keyframes textPulse {
-            0% { text-shadow: 0 0 30px rgba(212, 175, 55, 0.05); }
-            100% { text-shadow: 0 0 60px rgba(212, 175, 55, 0.25); }
+        .logo-diamond {
+            width: 32px; height: 32px; border: 1px solid var(--accent);
+            transform: rotate(45deg); display: flex;
+            align-items: center; justify-content: center;
+            transition: background-color 0.5s ease;
         }
-        
-        .sub { 
-            font-size: 0.8rem; 
-            letter-spacing: 10px; 
-            text-transform: uppercase; 
-            color: var(--gold-color); 
-            opacity: 0.5; 
-            margin-bottom: 30px; 
-        }
-        
-        .system-status {
-            display: inline-flex;
-            align-items: center;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.75rem;
-            color: var(--gold-color);
-            background: rgba(212, 175, 55, 0.03);
-            padding: 10px 28px;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            letter-spacing: 4px;
-        }
-        
-        .status-dot { 
-            width: 7px; 
-            height: 7px; 
-            background: var(--gold-color); 
-            border-radius: 50%; 
-            margin-left: 12px; 
-            box-shadow: 0 0 15px var(--gold-color);
-            animation: pulse 2s infinite;
+        .logo-link:hover .logo-diamond { background-color: var(--accent); }
+        .logo-diamond span {
+            transform: rotate(-45deg); font-weight: 900;
+            color: #fff; font-size: 12px;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.6); }
-            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); }
-            100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+        /* ========== TYPOGRAPHY ========== */
+        .heading-huge {
+            font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 900;
+            line-height: 0.9; letter-spacing: -0.03em; text-transform: uppercase;
+        }
+        .mono-label {
+            font-family: 'Orbitron', sans-serif; font-size: 11px;
+            letter-spacing: 3px; color: var(--accent); text-transform: uppercase;
+        }
+        .stroke-text { -webkit-text-stroke: 1.5px var(--accent); }
+
+        /* ========== BUTTONS ========== */
+        .btn-elite {
+            background: #ffffff; color: #000000; padding: 14px 32px;
+            border-radius: 100px; font-weight: 600; font-size: 14px;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            display: inline-flex; align-items: center; gap: 8px;
+            cursor: pointer; border: none; outline: none; user-select: none;
+        }
+        .btn-elite:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(255,255,255,0.2); }
+        .btn-elite:active { transform: scale(0.98); }
+        .btn-outline {
+            padding: 12px 24px; border: 1px solid rgba(212,175,55,0.3);
+            border-radius: 100px; font-weight: 700; font-size: 13px;
+            text-transform: uppercase; letter-spacing: 2px; color: var(--accent);
+            background: transparent; cursor: pointer; transition: background 0.3s ease;
+        }
+        .btn-outline:hover { background: rgba(212,175,55,0.05); }
+
+        /* ========== CARDS ========== */
+        .glass-node-card {
+            background: var(--panel-bg); border: 1px solid var(--border-color);
+            border-radius: 24px; padding: 24px; cursor: pointer;
+            transition: border-color 0.5s, background 0.5s, transform 0.5s, box-shadow 0.5s;
+            will-change: transform; user-select: none;
+        }
+        .glass-node-card:hover {
+            border-color: var(--accent); background: rgba(212,175,55,0.03);
+            transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
 
-        .rules-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
-            gap: 35px; 
+        /* ========== DYNAMIC SECTION ========== */
+        .full-section-viewport {
+            display: none; scroll-margin-top: 100px;
+            background: #0a0a0a; border: 1px solid rgba(212,175,55,0.15);
+            border-radius: 32px; padding: 32px; margin-top: 32px;
+            animation: fadeSlideIn 0.45s cubic-bezier(0.16,1,0.3,1);
+        }
+        @media (min-width: 768px) { .full-section-viewport { padding: 48px; } }
+        .full-section-viewport.active { display: block; }
+        @keyframes fadeSlideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .rule-card {
-            background: var(--panel-color);
-            border: var(--border-style);
-            padding: 45px 35px;
-            transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
-            opacity: 0.5;
-            filter: blur(0.3px);
+        /* ========== FORMS ========== */
+        .input-field {
+            width: 100%; background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(212,175,55,0.2); border-radius: 12px;
+            padding: 12px 16px; color: #fff; outline: none;
+            transition: border-color 0.3s ease; font-family: 'Cairo', sans-serif;
+        }
+        .input-field:focus { border-color: var(--accent); }
+        .input-field::placeholder { color: #6a6a6a; }
+
+        /* ========== WHISPER ========== */
+        .whisper {
+            position: fixed; bottom: 20px; left: 20px; z-index: 2000;
+            font-family: 'Cairo', sans-serif; font-size: 0.7rem;
+            color: rgba(212,175,55,0.2); max-width: 200px;
+            pointer-events: none; transition: opacity 0.8s ease;
         }
 
-        .rules-grid:hover .rule-card { opacity: 0.2; border-color: #0f0f0f; filter: blur(0.8px); }
+        /* ========== SCROLLBAR ========== */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #2a2a1a; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
-        .rules-grid .rule-card:hover { 
-            opacity: 1 !important;
-            border-color: rgba(212, 175, 55, 0.4); 
-            background: #0c0c0c;
-            box-shadow: 0 0 60px rgba(212, 175, 55, 0.08);
-            transform: translateY(-8px);
-            filter: blur(0px) !important;
-        }
-        
-        .rule-card::before {
-            content: '';
-            position: absolute;
-            top: -1px; right: -1px;
-            width: 12px; height: 12px;
-            border-top: 2px solid transparent;
-            border-right: 2px solid transparent;
-            transition: 0.5s ease;
-        }
-        .rule-card::after {
-            content: '';
-            position: absolute;
-            bottom: -1px; left: -1px;
-            width: 12px; height: 12px;
-            border-bottom: 2px solid transparent;
-            border-left: 2px solid transparent;
-            transition: 0.5s ease;
-        }
-        .rule-card:hover::before { border-color: var(--gold-color); width: 25px; height: 25px; }
-        .rule-card:hover::after { border-color: var(--gold-color); width: 25px; height: 25px; }
-
-        .rule-card .protocol-num {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.7rem;
-            color: #2a2a2a;
-            position: absolute;
-            top: 20px;
-            left: 25px;
-            letter-spacing: 3px;
-            transition: 0.4s;
-        }
-        .rule-card:hover .protocol-num { color: var(--gold-color); opacity: 0.9; }
-
-        .rule-card h3 { 
-            font-family: 'Cairo', sans-serif; 
-            font-weight: 800;
-            color: #b5b5b5; 
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            font-size: 1.2rem;
-            transition: 0.3s;
-            letter-spacing: 0.5px;
-        }
-        .rule-card:hover h3 { color: var(--gold-color); }
-        .rule-card h3::before { content: ''; margin-left: 15px; width: 15px; height: 1px; background: #252525; transition: 0.3s; }
-        .rule-card:hover h3::before { background: var(--gold-color); width: 40px; }
-
-        .rule-card p { line-height: 2; font-size: 0.95rem; color: #959595; text-align: justify; transition: 0.3s; }
-        .rule-card:hover p { color: #e0e0e0; }
-        .rule-card b { color: var(--gold-color); font-weight: 700; }
-        .warning { 
-            color: var(--danger-color); 
-            font-weight: 800; 
-            letter-spacing: 0.5px; 
-            text-shadow: 0 0 12px rgba(255, 51, 51, 0.2); 
-        }
-
-        footer { 
-            text-align: center; 
-            margin-top: 120px; 
-            padding-top: 30px; 
-            border-top: var(--border-style); 
-            font-size: 0.7rem; 
-            font-family: 'Orbitron', sans-serif; 
-            letter-spacing: 8px; 
-            color: #1a1a1a; 
-        }
+        .justify-text { text-align: justify; }
+        .hero-border { border-right: 2px solid var(--accent); padding-right: 24px; }
     </style>
 </head>
 <body>
 
-    <div class="main-container">
-        <header>
-            <h1>WHITE ROOM</h1>
-            <div class="sub">Elite Protocol • 2026</div>
-            <div class="system-status">
-                <span class="status-dot"></span> STATUS: NO MERCY
-            </div>
-        </header>
+    <div class="ticker-wrap" aria-hidden="true">
+        <div class="ticker-content">
+            [ ELITE_CONSTITUTION: ACTIVE ] • [ MIN_MATCHES: 7 ] • [ PROMOTION: SURVIVAL_OF_FITTEST ] • [ STATUS: NO_MERCY ]
+        </div>
+    </div>
 
-        <section class="rules-grid">
-            
-            <!-- PRT_01 -->
-            <div class="rule-card">
-                <span class="protocol-num">PRT_01</span>
-                <h3>بروتوكول الوصاية</h3>
-                <p>حق الإشراف والتدريب حكر على الثلاثة الأوائل (Top 3) في طبقة النخبة. <b>الشرط الإلزامي:</b> رفع تقارير رقمية فورية لجلسات التدريب مع روابط المباريات. أي إهمال في التوثيق يسقط حق الوصاية فوراً.</p>
-            </div>
-            
-            <!-- PRT_02 -->
-            <div class="rule-card">
-                <span class="protocol-num">PRT_02</span>
-                <h3>مرسوم الصعود</h3>
-                <p>الاستحقاق هو المفتاح: ينتقل المبتدئ إلى طبقة النخبة باحتلاله المركز الأول، الثاني، أو الثالث في قائمة شرف المبتدئين <b>لـ 4 أسابيع متتالية دون انقطاع</b>. التراجع ليوم واحد يعيد ضبط عداد التقييم.</p>
-            </div>
+    <header class="sticky-header">
+        <div class="container mx-auto px-6 md:px-12 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-3 group logo-link" id="logoHome" aria-label="العودة للصفحة الرئيسية">
+                <div class="logo-diamond"><span>WR</span></div>
+                <span class="text-xl font-black tracking-tighter uppercase" style="font-family:'Orbitron';">
+                    WHITE <span class="text-yellow-500 italic font-light">ROOM</span>
+                </span>
+            </a>
+            <nav class="hidden md:flex gap-6 text-xs font-bold uppercase tracking-wider" style="font-family:'Orbitron';">
+                <a href="#" id="navHomeLink" class="text-yellow-500 hover:text-white transition-colors duration-300">HOME</a>
+                <a href="#" id="navGridLink" class="hover:text-yellow-500 transition-colors duration-300">ELITE</a>
+            </nav>
+        </div>
+    </header>
 
-            <!-- PRT_03 -->
-            <div class="rule-card">
-                <span class="protocol-num">PRT_03</span>
-                <h3>وتيرة البقاء</h3>
-                <p>الخمول موت. الحد الأدنى للبقاء في النخبة هو <b>7 مواجهات رسمية أسبوعياً</b>. العجز عن هذا الرقم أو التباطؤ المتعمد يستدعي <span class="warning">الإنزال الفوري</span> إلى طبقة المبتدئين.</p>
+    <main>
+        <section id="heroSection" class="container mx-auto px-6 md:px-12 py-16 md:py-24">
+            <div class="mono-label mb-6">// ELITE_CONSTITUTION: WHITE_ROOM_CORE</div>
+            <h1 class="heading-huge text-white mb-8">
+                ELITE <br>
+                <span class="text-transparent stroke-text">CONSTITUTION</span>
+            </h1>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-end mt-12">
+                <p class="text-slate-300 text-lg md:text-xl leading-relaxed hero-border justify-text">
+                    دستور النخبة هو القانون الأسمى. هنا تُصنع القرارات، وتُراقب النتائج، ويُحاسب المقصرون بلا رحمة. البقاء للقمة وحدها، والسقوط لمن تخاذل.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <button class="btn-elite" id="actionExplore">تصفح البروتوكولات</button>
+                    <button class="btn-outline" id="actionIntro">اقرأ الميثاق</button>
+                </div>
             </div>
-
-            <!-- PRT_04 -->
-            <div class="rule-card">
-                <span class="protocol-num">PRT_04</span>
-                <h3>باب التحدي</h3>
-                <p>للمبتدئين حق طلب تحدي صاحب المركز الأخير في النخبة مرتين شهرياً. أما داخل النخبة، فيحق لصاحب المركز الأدنى تحدي من يسبقه مباشرة مرة واحدة أسبوعياً. <b>الخاسر يتبادل المركز مع منافسه.</b></p>
-            </div>
-
-            <!-- PRT_05 -->
-            <div class="rule-card">
-                <span class="protocol-num">PRT_05</span>
-                <h3>منحنى التطور</h3>
-                <p>الركود في النخبة خيانة للجوهر. يلتزم العضو بتقديم <b>تقارير تحليل أسبوعية</b> لأخطائه. ثبات التصنيف أو تراجعه 45 يوماً دون مبرر علمي يفعل بروتوكول <span class="warning">الإنزال الفوري</span>.</p>
-            </div>
-
-            <!-- PRT_06 -->
-            <div class="rule-card">
-                <span class="protocol-num">PRT_06</span>
-                <h3>قسم النزاهة</h3>
-                <p>الاستعانة بالمحركات (Engines) أو أي أدوات خارجية جريمة كبرى. أنظمة الفحص الرقمية ترصد كل تنفس، وعقوبتها <span class="warning">الشطب النهائي مع العار</span> من سجلات الغرفة البيضاء.</p>
-            </div>
-
-            <!-- PRT_07 -->
-            <div class="rule-card">
-                <span class="protocol-num">PRT_07</span>
-                <h3>ميثاق الصمت</h3>
-                <p>قنوات النخبة للتحليل المنطقي البحت. <b>المشاعر، الاحتفالات، أو عبارات الإحباط</b> تكلف خصم 5 نقاط من رصيد التقييم. العقل وحده هو العملة الوحيدة هنا.</p>
-            </div>
-
-            <!-- PRT_08 -->
-            <div class="rule-card">
-                <span class="protocol-num">PRT_08</span>
-                <h3>جدار العزل</h3>
-                <p>الخطط التكتيكية، دراسات نهاية الأدوار، وتحليلات الأخطاء هي ملكية فكرية حصرية للمنشأة. تسريب أي مادة فنية خارج النطاق المؤمن عقوبته <span class="warning">النفي الفوري والتشهير</span>.</p>
-            </div>
-
-            <!-- PRT_09 -->
-            <div class="rule-card">
-                <span class="protocol-num">PRT_09</span>
-                <h3>ساحة الاختبار</h3>
-                <p>جميع الاختبارات والمباريات الرسمية تُجرى حصرياً عبر <b>Chess.com</b>. أي مواجهة خارج هذا الميدان الرقمي لاغية، ولا تُقيد في سجل النخبة التاريخي.</p>
-            </div>
-
-            <!-- PRT_10 (مرسوم التبديل) -->
-            <div class="rule-card">
-                <span class="protocol-num">PRT_10</span>
-                <h3>مرسوم التبديل الإجباري</h3>
-                <p>في نهاية كل دورة (4 أسابيع)، يهبط أقل 3 أعضاء في النخبة تصنيفاً تلقائياً إلى طبقة المبتدئين، ليحل محلهم أعلى 3 مبتدئين. هذا التبديل هو نبض الغرفة البيضاء، <b>يضمن بقاء الأصلح فقط في القمة.</b></p>
-            </div>
-
-            <!-- PRT_11 (تحدي النجاة) -->
-            <div class="rule-card">
-                <span class="protocol-num">PRT_11</span>
-                <h3>تحدي النجاة</h3>
-                <p>صاحب المركز الأخير في النخبة في نهاية كل أسبوع، يُستدعى لخوض مباراة 'نجاة' ضد صاحب المركز الرابع في المبتدئين. <span class="warning">الخسارة تعني التبديل الفوري للمراكز.</span></p>
-            </div>
-
-            <!-- PRT_12 (تشريح الهزيمة - معدل) -->
-            <div class="rule-card">
-                <span class="protocol-num">PRT_12</span>
-                <h3>تشريح الهزيمة</h3>
-                <p>أي عضو في النخبة يخسر مباراتين متتاليتين رسميتين، يُجبر على <b>تسجيل فيديو كامل للمباراة (أو مشاركة الشاشة مع تعليق صوتي)</b> وإرساله إلى قناة النخبة. <b>يُمنع تقديم أي تحليل شخصي؛ الهدف أن تقوم النخبة بنفسها بتشريح الخطأ وإصلاحه بشكل جماعي.</b></p>
-            </div>
-            
         </section>
 
-        <footer>
-            THE WHITE ROOM © 2026 // ELITE PROTOCOLS ACTIVE // SYSTEM_CODE: WR-ELITE-00
-        </footer>
-    </div>
+        <section id="nodesGridSection" class="container mx-auto px-6 md:px-12 py-12">
+            <div class="border-b border-white/5 pb-6 mb-12">
+                <div class="mono-label mb-2">// ELITE_PROTOCOLS</div>
+                <h2 class="text-3xl md:text-4xl font-black text-white">
+                    قوانين النخبة <span class="text-yellow-500 font-light italic">لا تقبل التأويل</span>
+                </h2>
+                <p class="text-slate-400 mt-2 text-sm">اضغط على أي كارت لقراءة البروتوكول كاملاً.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div class="glass-node-card" data-target="prt01"><div class="text-3xl mb-4">👑</div><span class="text-[10px] font-bold block mb-1 text-yellow-500" style="font-family:'Orbitron';">PRT_01</span><h3 class="text-lg font-bold text-white mb-2">بروتوكول الوصاية</h3><p class="text-slate-400 text-xs line-clamp-2">حق الإشراف والتدريب.</p></div>
+                <div class="glass-node-card" data-target="prt02"><div class="text-3xl mb-4">📜</div><span class="text-[10px] font-bold block mb-1 text-yellow-500" style="font-family:'Orbitron';">PRT_02</span><h3 class="text-lg font-bold text-white mb-2">مرسوم الصعود</h3><p class="text-slate-400 text-xs line-clamp-2">كيف يصل المبتدئ إلى هنا.</p></div>
+                <div class="glass-node-card" data-target="prt03"><div class="text-3xl mb-4">⚡</div><span class="text-[10px] font-bold block mb-1 text-yellow-500" style="font-family:'Orbitron';">PRT_03</span><h3 class="text-lg font-bold text-white mb-2">وتيرة البقاء</h3><p class="text-slate-400 text-xs line-clamp-2">الحد الأدنى للنشاط.</p></div>
+                <div class="glass-node-card" data-target="prt04"><div class="text-3xl mb-4">⚔️</div><span class="text-[10px] font-bold block mb-1 text-yellow-500" style="font-family:'Orbitron';">PRT_04</span><h3 class="text-lg font-bold text-white mb-2">باب التحدي</h3><p class="text-slate-400 text-xs line-clamp-2">قوانين المواجهات الداخلية.</p></div>
+                <div class="glass-node-card" data-target="prt05"><div class="text-3xl mb-4">📈</div><span class="text-[10px] font-bold block mb-1 text-yellow-500" style="font-family:'Orbitron';">PRT_05</span><h3 class="text-lg font-bold text-white mb-2">منحنى التطور</h3><p class="text-slate-400 text-xs line-clamp-2">الركود = هبوط.</p></div>
+                <div class="glass-node-card" data-target="prt06"><div class="text-3xl mb-4">🔍</div><span class="text-[10px] font-bold block mb-1 text-yellow-500" style="font-family:'Orbitron';">PRT_06</span><h3 class="text-lg font-bold text-white mb-2">قسم النزاهة</h3><p class="text-slate-400 text-xs line-clamp-2">الغش = عار.</p></div>
+                <div class="glass-node-card" data-target="prt07"><div class="text-3xl mb-4">🔇</div><span class="text-[10px] font-bold block mb-1 text-yellow-500" style="font-family:'Orbitron';">PRT_07</span><h3 class="text-lg font-bold text-white mb-2">ميثاق الصمت</h3><p class="text-slate-400 text-xs line-clamp-2">العواطف ممنوعة.</p></div>
+                <div class="glass-node-card" data-target="prt08"><div class="text-3xl mb-4">🔒</div><span class="text-[10px] font-bold block mb-1 text-yellow-500" style="font-family:'Orbitron';">PRT_08</span><h3 class="text-lg font-bold text-white mb-2">جدار العزل</h3><p class="text-slate-400 text-xs line-clamp-2">سرية المواد.</p></div>
+                <div class="glass-node-card" data-target="prt09"><div class="text-3xl mb-4">🌐</div><span class="text-[10px] font-bold block mb-1 text-yellow-500" style="font-family:'Orbitron';">PRT_09</span><h3 class="text-lg font-bold text-white mb-2">ساحة الاختبار</h3><p class="text-slate-400 text-xs line-clamp-2">Chess.com فقط.</p></div>
+                <div class="glass-node-card" data-target="prt10"><div class="text-3xl mb-4">🔄</div><span class="text-[10px] font-bold block mb-1 text-yellow-500" style="font-family:'Orbitron';">PRT_10</span><h3 class="text-lg font-bold text-white mb-2">مرسوم التبديل</h3><p class="text-slate-400 text-xs line-clamp-2">هبوط 3 وصعود 3.</p></div>
+                <div class="glass-node-card" data-target="prt11"><div class="text-3xl mb-4">⚠️</div><span class="text-[10px] font-bold block mb-1 text-yellow-500" style="font-family:'Orbitron';">PRT_11</span><h3 class="text-lg font-bold text-white mb-2">تحدي النجاة</h3><p class="text-slate-400 text-xs line-clamp-2">مباراة فاصلة أسبوعياً.</p></div>
+                <div class="glass-node-card" data-target="prt12"><div class="text-3xl mb-4">🎥</div><span class="text-[10px] font-bold block mb-1 text-yellow-500" style="font-family:'Orbitron';">PRT_12</span><h3 class="text-lg font-bold text-white mb-2">تشريح الهزيمة</h3><p class="text-slate-400 text-xs line-clamp-2">فيديو إجباري للخاسر.</p></div>
+                <div class="glass-node-card" data-target="contact"><div class="text-3xl mb-4">✉️</div><span class="text-[10px] font-bold block mb-1 text-yellow-500" style="font-family:'Orbitron';">PRT_13</span><h3 class="text-lg font-bold text-white mb-2">تواصل القيادة</h3><p class="text-slate-400 text-xs line-clamp-2">للإبلاغ أو الاستفسار.</p></div>
+            </div>
+        </section>
+
+        <section id="dynamicViewportContainer" class="container mx-auto px-6 md:px-12 py-12" aria-live="polite"></section>
+    </main>
+
+    <footer class="py-12 border-t border-white/5 bg-black mt-20">
+        <div class="container mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-6 h-6 border border-yellow-600/50 rotate-45 flex items-center justify-center"><span class="rotate-[-45deg] text-[8px] font-bold">WR</span></div>
+                <div class="text-xs font-black tracking-widest uppercase" style="font-family:'Orbitron';">THE WHITE ROOM <span class="text-yellow-500">ELITE</span></div>
+            </div>
+            <div class="text-[10px] tracking-wider opacity-40" style="font-family:'Orbitron';">© 2026 ELITE_CONSTITUTION — NO MERCY</div>
+        </div>
+    </footer>
+
+    <div class="whisper" id="dynamicWhisper" aria-hidden="true">"القمة لا تتسع للضعفاء."</div>
+
+    <script>
+        (function() {
+            const whiteRoomData = {
+                prt01: {
+                    title: "بروتوكول الوصاية",
+                    body: `<div class="max-w-4xl mx-auto"><span class="mono-label text-yellow-500 block mb-2">// PRT_01</span><h3 class="text-3xl font-black text-white mb-6">حق الإشراف</h3><p class="text-slate-300 leading-relaxed justify-text">فقط <b>أفضل ثلاثة في النخبة</b> يحق لهم تدريب المبتدئين. الشرط الوحيد: <b>رفع تقارير فورية لكل جلسة تدريب</b> متضمنة روابط المباريات. أي تقصير يسقط حق الوصاية فوراً.</p></div>`
+                },
+                prt02: {
+                    title: "مرسوم الصعود",
+                    body: `<div class="max-w-4xl mx-auto"><span class="mono-label text-yellow-500 block mb-2">// PRT_02</span><h3 class="text-3xl font-black text-white mb-6">كيف تصل إلى هنا؟</h3><p class="text-slate-300 leading-relaxed justify-text">يُرفع المبتدئ إلى النخبة عند احتلاله <b>المركز الأول، الثاني، أو الثالث</b> في قائمة شرف المبتدئين <b>لـ 4 أسابيع متتالية</b>. تراجع يوم واحد يعيد العداد إلى الصفر.</p></div>`
+                },
+                prt03: {
+                    title: "وتيرة البقاء",
+                    body: `<div class="max-w-4xl mx-auto"><span class="mono-label text-yellow-500 block mb-2">// PRT_03</span><h3 class="text-3xl font-black text-white mb-6">الحد الأدنى للنشاط</h3><p class="text-slate-300 leading-relaxed justify-text">على كل نخبوي أن يخوض <b>7 مباريات رسمية على الأقل أسبوعياً</b>. عدم الالتزام بهذا الرقم يؤدي إلى <span class="text-red-500 font-bold">الإنزال الفوري</span> إلى طبقة المبتدئين.</p></div>`
+                },
+                prt04: {
+                    title: "باب التحدي",
+                    body: `<div class="max-w-4xl mx-auto"><span class="mono-label text-yellow-500 block mb-2">// PRT_04</span><h3 class="text-3xl font-black text-white mb-6">قوانين المواجهات</h3><p class="text-slate-300 leading-relaxed justify-text">يحق للمبتدئ تحدي صاحب المركز الأخير في النخبة <b>مرتين شهرياً</b>. داخل النخبة، يحق للاعب تحدي من يسبقه مباشرة <b>مرة أسبوعياً</b>. <b>الخاسر يتبادل المركز مع منافسه.</b></p></div>`
+                },
+                prt05: {
+                    title: "منحنى التطور",
+                    body: `<div class="max-w-4xl mx-auto"><span class="mono-label text-yellow-500 block mb-2">// PRT_05</span><h3 class="text-3xl font-black text-white mb-6">الركود = هبوط</h3><p class="text-slate-300 leading-relaxed justify-text">كل عضو في النخبة ملزم بتقديم <b>تقارير تحليل أسبوعية</b> عن أخطائه. إذا بقي تصنيفه ثابتاً أو هبط لمدة 45 يوماً دون مبرر، يتم <span class="text-red-500 font-bold">إنزاله فوراً</span>.</p></div>`
+                },
+                prt06: {
+                    title: "قسم النزاهة",
+                    body: `<div class="max-w-4xl mx-auto"><span class="mono-label text-yellow-500 block mb-2">// PRT_06</span><h3 class="text-3xl font-black text-white mb-6">الغش = نهاية</h3><p class="text-slate-300 leading-relaxed justify-text">استخدام المحركات أو أي أدوات مساعدة <b>جريمة لا تغتفر</b>. أنظمتنا ترصد أي تلاعب، والعقوبة <span class="text-red-500 font-bold">شطب نهائي مع العار</span> من جميع السجلات.</p></div>`
+                },
+                prt07: {
+                    title: "ميثاق الصمت",
+                    body: `<div class="max-w-4xl mx-auto"><span class="mono-label text-yellow-500 block mb-2">// PRT_07</span><h3 class="text-3xl font-black text-white mb-6">العواطف ممنوعة</h3><p class="text-slate-300 leading-relaxed justify-text">قنوات النخبة للتحليل المنطقي البحت. أي <b>انفعال أو احتفال أو إحباط</b> يكلفك خصم 5 نقاط من تقييمك. العقل البارد هو العملة الوحيدة هنا.</p></div>`
+                },
+                prt08: {
+                    title: "جدار العزل",
+                    body: `<div class="max-w-4xl mx-auto"><span class="mono-label text-yellow-500 block mb-2">// PRT_08</span><h3 class="text-3xl font-black text-white mb-6">المواد سرية</h3><p class="text-slate-300 leading-relaxed justify-text">كل الخطط والتحليلات ودراسات نهاية الأدوار هي <b>ملكية فكرية حصرية</b> للمنشأة. تسريب أي مادة خارج النطاق المؤمن عقوبته <span class="text-red-500 font-bold">النفي الفوري والتشهير</span>.</p></div>`
+                },
+                prt09: {
+                    title: "ساحة الاختبار",
+                    body: `<div class="max-w-4xl mx-auto"><span class="mono-label text-yellow-500 block mb-2">// PRT_09</span><h3 class="text-3xl font-black text-white mb-6">المنصة الوحيدة</h3><p class="text-slate-300 leading-relaxed justify-text">جميع المواجهات والتقييمات تتم حصرياً عبر <b>Chess.com</b>. أي مباراة خارج هذه المنصة لا تُحتسب ولا تُسجل في تاريخ النخبة.</p></div>`
+                },
+                prt10: {
+                    title: "مرسوم التبديل الإجباري",
+                    body: `<div class="max-w-4xl mx-auto"><span class="mono-label text-yellow-500 block mb-2">// PRT_10</span><h3 class="text-3xl font-black text-white mb-6">الغربلة الدورية</h3><p class="text-slate-300 leading-relaxed justify-text">كل 4 أسابيع، <b>يهبط أقل 3 أعضاء تصنيفاً</b> من النخبة إلى المبتدئين، <b>ويصعد أفضل 3 مبتدئين</b> ليحلوا محلهم. هذا التبديل يحافظ على نقاء القمة.</p></div>`
+                },
+                prt11: {
+                    title: "تحدي النجاة",
+                    body: `<div class="max-w-4xl mx-auto"><span class="mono-label text-yellow-500 block mb-2">// PRT_11</span><h3 class="text-3xl font-black text-white mb-6">المباراة الفاصلة</h3><p class="text-slate-300 leading-relaxed justify-text">في نهاية كل أسبوع، <b>صاحب المركز الأخير في النخبة</b> يُجبر على مواجهة <b>صاحب المركز الرابع في المبتدئين</b>. <span class="text-red-500 font-bold">الخاسر يغادر النخبة فوراً.</span></p></div>`
+                },
+                prt12: {
+                    title: "تشريح الهزيمة",
+                    body: `<div class="max-w-4xl mx-auto"><span class="mono-label text-yellow-500 block mb-2">// PRT_12</span><h3 class="text-3xl font-black text-white mb-6">فيديو إجباري للخاسر</h3><p class="text-slate-300 leading-relaxed justify-text">أي نخبوي يخسر مباراتين رسميتين متتاليتين، <b>يُجبر على تسجيل فيديو كامل للمباراة</b> وإرساله إلى قناة النخبة. <b>يُمنع التحليل الشخصي</b>؛ الهدف أن تتولى النخبة تشريح الخطأ بشكل جماعي.</p></div>`
+                },
+                contact: {
+                    title: "تواصل القيادة",
+                    body: `<div class="max-w-2xl mx-auto text-center">
+                <span class="mono-label text-yellow-500 block mb-2">// PRT_13</span>
+                <h3 class="text-3xl font-black text-white mb-6">إبلاغ أو استفسار</h3>
+                <p class="text-slate-300 mb-8">املأ البيانات وسيتم توجيهك فوراً إلى محادثة واتساب مع قيادة النخبة.</p>
+                <form id="contactForm" class="space-y-5" style="text-align:right;">
+                    <div>
+                        <label class="block text-sm font-bold text-white mb-2">الاسم أو اللقب</label>
+                        <input type="text" id="contactName" required placeholder="كيف نناديك؟" class="input-field">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-white mb-2">الموضوع</label>
+                        <textarea id="contactMessage" required rows="4" placeholder="اكتب رسالتك..." class="input-field"></textarea>
+                    </div>
+                    <button type="submit" class="btn-elite w-full justify-center text-center"><span>📱</span> إرسال إلى واتساب القيادة</button>
+                </form>
+                <p class="text-xs text-slate-500 mt-4">سيتم اختيار رقم قيادة عشوائي للتواصل معك مباشرة.</p>
+            </div>`
+                }
+            };
+
+            const dynamicViewportContainer = document.getElementById('dynamicViewportContainer');
+            const nodesGridSection = document.getElementById('nodesGridSection');
+            const whisperEl = document.getElementById('dynamicWhisper');
+
+            function renderSectionContent(sectionId) {
+                if (!whiteRoomData[sectionId]) return;
+                document.querySelectorAll('.full-section-viewport.active').forEach(s => s.classList.remove('active'));
+                let targetDiv = document.getElementById(`viewport-${sectionId}`);
+                if (!targetDiv) {
+                    targetDiv = document.createElement('div');
+                    targetDiv.id = `viewport-${sectionId}`;
+                    targetDiv.className = 'full-section-viewport';
+                    targetDiv.innerHTML = whiteRoomData[sectionId].body;
+                    dynamicViewportContainer.appendChild(targetDiv);
+                    if (sectionId === 'contact') {
+                        const form = targetDiv.querySelector('#contactForm');
+                        if (form) form.addEventListener('submit', handleContactSubmit);
+                    }
+                }
+                requestAnimationFrame(() => {
+                    targetDiv.classList.add('active');
+                    targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            }
+
+            function handleContactSubmit(event) {
+                event.preventDefault();
+                const nameInput = document.getElementById('contactName');
+                const messageInput = document.getElementById('contactMessage');
+                if (!nameInput || !messageInput) return;
+                const name = nameInput.value.trim();
+                const message = messageInput.value.trim();
+                if (!name || !message) { alert('يرجى ملء جميع الحقول.'); return; }
+                const phoneNumbers = ['201131543403', '201118449087'];
+                const randomNumber = phoneNumbers[Math.floor(Math.random() * phoneNumbers.length)];
+                const text = `تقرير من النخبة - ${name}:%0A%0A${message}`;
+                window.open(`https://wa.me/${randomNumber}?text=${text}`, '_blank');
+            }
+
+            nodesGridSection.addEventListener('click', e => {
+                const card = e.target.closest('.glass-node-card');
+                if (card) renderSectionContent(card.getAttribute('data-target'));
+            });
+
+            document.getElementById('actionExplore').addEventListener('click', () => nodesGridSection.scrollIntoView({ behavior: 'smooth' }));
+            document.getElementById('actionIntro').addEventListener('click', () => renderSectionContent('prt01'));
+            document.getElementById('logoHome').addEventListener('click', e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+            document.getElementById('navHomeLink').addEventListener('click', e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+            document.getElementById('navGridLink').addEventListener('click', e => { e.preventDefault(); nodesGridSection.scrollIntoView({ behavior: 'smooth' }); });
+
+            const whispers = [
+                "القمة لا تتسع للضعفاء.",
+                "أنت هنا لأنك الأفضل، فأثبت ذلك.",
+                "كل خطأ يُحسب، وكل انتصار يُسجل.",
+                "المراقبة لا تنام.",
+                "النخبة لا تشكو. النخبة تتكيف."
+            ];
+            let wIdx = 0;
+            setInterval(() => {
+                wIdx = (wIdx + 1) % whispers.length;
+                whisperEl.style.opacity = '0';
+                setTimeout(() => {
+                    whisperEl.textContent = `"${whispers[wIdx]}"`;
+                    whisperEl.style.opacity = '1';
+                }, 350);
+            }, 6000);
+        })();
+    </script>
 </body>
 </html>
