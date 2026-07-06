@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Meta Tags للظهور الاحترافي عند المشاركة -->
     <title>THE WHITE ROOM | Operational Constitution</title>
     <meta name="description" content="الدستور الاستراتيجي لمنشأة الغرفة البيضاء - توليد العباقرة.">
     
@@ -12,62 +11,200 @@
     
     <style>
         :root {
-            --bg-color: #050505;
-            --panel-color: #0d0d0d;
+            --bg-color: #020202;
+            --panel-color: #070707;
             --accent-color: #ffffff;
             --danger-color: #ff3333;
-            --text-gray: #a0a0a0;
-            --border-style: 1px solid #222;
+            --text-gray: #888888;
+            --border-style: 1px solid #121212;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
 
         body {
             background-color: var(--bg-color);
+            /* تأثير الخلفية الشبكية التكنولوجية */
+            background-image: 
+                linear-gradient(rgba(18, 18, 18, 0.4) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(18, 18, 18, 0.4) 1px, transparent 1px);
+            background-size: 40px 40px;
             color: var(--text-gray);
             font-family: 'Cairo', sans-serif;
             min-height: 100vh;
-            padding: 40px 20px;
+            padding: 100px 20px;
             display: flex;
             justify-content: center;
+            position: relative;
+            overflow-x: hidden;
         }
 
-        .main-container { width: 100%; max-width: 900px; }
+        /* تأثير شريط المسح الأمني للشاشات (Scanline Effect) */
+        body::after {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.01), rgba(0, 255, 0, 0.005), rgba(0, 255, 0, 0.01));
+            z-index: 9999;
+            background-size: 100% 4px, 6px 100%;
+            pointer-events: none;
+        }
+
+        .main-container { width: 100%; max-width: 1150px; z-index: 2; }
 
         /* الترويسة */
-        header { text-align: center; margin-bottom: 60px; }
-        h1 { font-family: 'Orbitron', sans-serif; font-size: 3.5rem; color: var(--accent-color); letter-spacing: 12px; margin-bottom: 10px; }
-        .sub { font-size: 0.9rem; letter-spacing: 6px; text-transform: uppercase; color: var(--accent-color); opacity: 0.6; }
+        header { text-align: center; margin-bottom: 80px; position: relative; }
+        
+        h1 { 
+            font-family: 'Orbitron', sans-serif; 
+            font-size: 4rem; 
+            color: var(--accent-color); 
+            letter-spacing: 20px; 
+            margin-bottom: 12px;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+            animation: textPulse 4s infinite alternate;
+        }
+        
+        @keyframes textPulse {
+            0% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.02); }
+            100% { text-shadow: 0 0 40px rgba(255, 255, 255, 0.15); }
+        }
+        
+        .sub { 
+            font-size: 0.8rem; 
+            letter-spacing: 10px; 
+            text-transform: uppercase; 
+            color: var(--accent-color); 
+            opacity: 0.4; 
+            margin-bottom: 30px; 
+        }
+        
+        /* مؤشر حالة النظام التفاعلي */
+        .system-status {
+            display: inline-flex;
+            align-items: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.7rem;
+            color: #00ff66;
+            background: rgba(0, 255, 102, 0.02);
+            padding: 8px 24px;
+            border: 1px solid rgba(0, 255, 102, 0.12);
+            letter-spacing: 3px;
+        }
+        
+        .status-dot { 
+            width: 6px; 
+            height: 6px; 
+            background: #00ff66; 
+            border-radius: 50%; 
+            margin-left: 12px; 
+            box-shadow: 0 0 10px #00ff66;
+            animation: pulse 2.5s infinite;
+        }
 
-        /* الشبكة */
-        .rules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        @keyframes pulse {
+            0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(0, 255, 102, 0.5); }
+            70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(0, 255, 102, 0); }
+            100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(0, 255, 102, 0); }
+        }
 
+        /* حاوية الكروت */
+        .rules-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); 
+            gap: 30px; 
+        }
+
+        /* الحالة الافتراضية للكروت عند فتح الموقع (شبه مظللة وغامضة) */
         .rule-card {
             background: var(--panel-color);
             border: var(--border-style);
-            padding: 30px;
+            padding: 45px 35px;
+            transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            opacity: 0.45; /* التعتيم المبدئي */
+            filter: blur(0.2px);
+        }
+
+        /* عند تحريك الماوس فوق الشبكة بأكملها، تنخفض بقية الكروت غير المحددة أكثر */
+        .rules-grid:hover .rule-card { opacity: 0.2; border-color: #0f0f0f; filter: blur(0.5px); }
+
+        /* تأثير الكارت المحدد (يضيء بنسبة 100% ويصبح حاداً) */
+        .rules-grid .rule-card:hover { 
+            opacity: 1 !important;
+            border-color: rgba(255, 255, 255, 0.3); 
+            background: #0b0b0b;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            transform: translateY(-5px);
+            filter: blur(0px) !important;
+        }
+        
+        /* الزوايا السيبرانية المتوهجة (Top-Right) */
+        .rule-card::before {
+            content: '';
+            position: absolute;
+            top: -1px; right: -1px;
+            width: 10px; height: 10px;
+            border-top: 2px solid transparent;
+            border-right: 2px solid transparent;
+            transition: 0.4s ease;
+        }
+        /* الزوايا السيبرانية المتوهجة (Bottom-Left) */
+        .rule-card::after {
+            content: '';
+            position: absolute;
+            bottom: -1px; left: -1px;
+            width: 10px; height: 10px;
+            border-bottom: 2px solid transparent;
+            border-left: 2px solid transparent;
+            transition: 0.4s ease;
+        }
+        .rule-card:hover::before { border-color: var(--accent-color); width: 20px; height: 20px; }
+        .rule-card:hover::after { border-color: var(--accent-color); width: 20px; height: 20px; }
+
+        .rule-card .protocol-num {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.65rem;
+            color: #252525;
+            position: absolute;
+            top: 20px;
+            left: 25px;
+            letter-spacing: 2px;
             transition: 0.3s;
         }
+        .rule-card:hover .protocol-num { color: var(--accent-color); opacity: 0.7; }
 
-        .rule-card:hover { border-color: var(--accent-color); box-shadow: 0 0 15px rgba(255,255,255,0.05); }
-        
         .rule-card h3 { 
-            font-family: 'Orbitron', sans-serif; 
-            color: var(--accent-color); 
-            margin-bottom: 20px;
+            font-family: 'Cairo', sans-serif; 
+            font-weight: 800;
+            color: #c5c5c5; 
+            margin-bottom: 22px;
             display: flex;
             align-items: center;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
+            transition: 0.3s;
+            letter-spacing: 0.5px;
         }
+        .rule-card:hover h3 { color: var(--accent-color); }
+        .rule-card h3::before { content: ''; margin-left: 14px; width: 12px; height: 1px; background: #202020; transition: 0.3s; }
+        .rule-card:hover h3::before { background: var(--accent-color); width: 30px; }
 
-        .rule-card h3::before { content: ''; margin-left: 10px; width: 20px; height: 1px; background: #444; }
-
-        .rule-card p { line-height: 1.8; font-size: 1rem; color: #ccc; }
-        .rule-card b { color: var(--accent-color); }
-        .warning { color: var(--danger-color); font-weight: 800; }
+        .rule-card p { line-height: 1.9; font-size: 0.95rem; color: #959595; text-align: justify; transition: 0.3s; }
+        .rule-card:hover p { color: #d5d5d5; }
+        .rule-card b { color: var(--accent-color); font-weight: 600; }
+        .warning { color: var(--danger-color); font-weight: 800; letter-spacing: 0.5px; text-shadow: 0 0 10px rgba(255, 51, 51, 0.1); }
 
         /* الفوتر */
-        footer { text-align: center; margin-top: 60px; padding-top: 20px; border-top: var(--border-style); font-size: 0.7rem; letter-spacing: 4px; color: #444; }
+        footer { 
+            text-align: center; 
+            margin-top: 120px; 
+            padding-top: 30px; 
+            border-top: var(--border-style); 
+            font-size: 0.7rem; 
+            font-family: 'Orbitron', sans-serif; 
+            letter-spacing: 6px; 
+            color: #202020; 
+        }
     </style>
 </head>
 <body>
@@ -76,37 +213,80 @@
         <header>
             <h1>WHITE ROOM</h1>
             <div class="sub">Operational System • 2026</div>
+            <div class="system-status">
+                <span class="status-dot"></span> SYSTEM: ACTIVE & MONITORING
+            </div>
         </header>
 
         <section class="rules-grid">
+            
+            <!-- بروتوكول 01 -->
             <div class="rule-card">
+                <span class="protocol-num">PRT_01</span>
                 <h3>بروتوكول التدريب</h3>
-                <p>للمحترفين فقط: من وصل للـ Top 3 في النخبة، يحق له تبني تلميذ. <b>الشرط:</b> رفع روابط مباريات التلميذ على Chess.com للقيادة. بلا توثيق = لا اعتماد.</p>
+                <p>يقتصر حق الإشراف والتدريب على الثلاثة الأوائل (Top 3) في طبقة النخبة. <b>الشرط الإلزامي:</b> توثيق ورفع روابط مباريات التلميذ إلى الإدارة فور انتهائها. غياب التوثيق الرقمي يعني عدم الاعتداد ببرنامج التدريب كلياً.</p>
             </div>
+            
+            <!-- بروتوكول 02 -->
             <div class="rule-card">
+                <span class="protocol-num">PRT_02</span>
                 <h3>معايير الترقية</h3>
-                <p>للانتقال من "المبتدئين" إلى "النخبة": احتلال المراكز الثلاثة الأولى في قائمة شرف المبتدئين لمدة <b>4 أسابيع متتالية</b>. أي تعثر يعني العودة للصفر.</p>
+                <p>الاستحقاق والترقي: يتطلب الانتقال من طبقة المبتدئين إلى طبقة النخبة احتلال أحد المراكز الثلاثة الأولى في قائمة الشرف لمدة <b>4 أسابيع متتالية</b>. أي إخفاق في الحفاظ على المركز خلال هذه المدة يلغي التقدم، ويعيد عدّاد التقييم إلى نقطة الصفر.</p>
             </div>
+
+            <!-- بروتوكول 03 -->
             <div class="rule-card">
+                <span class="protocol-num">PRT_03</span>
                 <h3>شرط النشاط</h3>
-                <p>يجب على كل عضو خوض <b>5 مباريات رسمية</b> على الأقل كل أسبوع. أي خمول يقل عن هذا الرقم يعني <span class="warning">الطرد الفوري</span> من الغرفة.</p>
+                <p>معيار الحد الأدنى للنشاط: يلتزم كل عضو بخوض <b>5 مواجهات رسمية</b> كحد أدنى أسبوعياً. أي مؤشر على الخمول الرقمي أو التراجع عن هذا المعدل يستوجب <span class="warning">الإقصاء الفوري</span> من المنشأة.</p>
             </div>
+
+            <!-- بروتوكول 04 -->
             <div class="rule-card">
-                <h3>النزاهة التامة</h3>
-                <p>استخدام أي محركات شطرنج (Engine) أثناء اللعب ممنوع تماماً. سنكشف الغشاشين ونقوم <span class="warning">بطردهم نهائياً</span> من سجلات المنشأة بلا رجعة.</p>
+                <span class="protocol-num">PRT_04</span>
+                <h3>التحدي المستهدف</h3>
+                <p>يحق لأعضاء طبقة المبتدئين تحدي المركز الأخير في طبقة النخبة بمعدل <b>مرتين شهرياً</b> كحد أقصى. الخسارة في التحدي تعني حظر العضو من تقديم طلبات المواجهة لمدة أسبوعين متتاليين، حمايةً لوقت النخبة.</p>
             </div>
+
+            <!-- بروتوكول 05 -->
             <div class="rule-card">
+                <span class="protocol-num">PRT_05</span>
+                <h3>التطور المستمر</h3>
+                <p>الركود والتحجر الفني ممنوع. يلتزم العضو بالحفاظ على منحنى صعود مستمر في تصنيف (Elo). ثبات المستوى الفني أو التراجع غير المبرر لمدة <b>45 يوماً متتالية</b> يضع العضو تحت مقصلة المراجعة وإعادة التقييم الإجباري.</p>
+            </div>
+
+            <!-- بروتوكول 06 -->
+            <div class="rule-card">
+                <span class="protocol-num">PRT_06</span>
+                <h3>النزاهة المطلقة</h3>
+                <p>يحظر حظراً مطلقاً الاستعانة بمحركات الشطرنج أو أي أدوات تحليلية خارجية أثناء المواجهات المعتمدة. أنظمة الرصد الرقمية كفيلة بكشف أدنى تلاعب، وعقوبته <span class="warning">الشطب النهائي</span> من سجلات الغرفة البيضاء بلا حق في الاعتراض.</p>
+            </div>
+
+            <!-- بروتوكول 07 -->
+            <div class="rule-card">
+                <span class="protocol-num">PRT_07</span>
                 <h3>قواعد السلوك</h3>
-                <p>النقاشات تقنية بحتة حول الشطرنج. يُمنع منعاً باتاً التلاسن، السخرية، أو العواطف الزائدة. العقل والتحليل هما المعيار الوحيد للبقاء.</p>
+                <p>تقتصر قنوات التواصل على النقاشات التقنية والتحليلات البحتة. يُمنع منعاً باتاً التلاسن، السخرية، أو إقحام الانفعالات الشخصية. العقل والتحليل المنطقي البارد هما المعيار الوحيد لشرعية البقاء.</p>
             </div>
+
+            <!-- بروتوكول 08 -->
             <div class="rule-card">
-                <h3>الميدان الرسمي</h3>
-                <p>جميع الاختبارات والمباريات تُجرى حصرياً على موقع <b>Chess.com</b>. أي مباراة خارج هذا الموقع لا تُعتمد في سجلات تقييم الغرفة البيضاء.</p>
+                <span class="protocol-num">PRT_08</span>
+                <h3>عزل البيانات وسريتها</h3>
+                <p>الخطط التكتيكية، السجلات التحليلية، وتقارير الأخطاء هي ملكية فكرية حصرية للمنشأة. مشاركة أي لقطة شاشة (Screenshot) أو تسريب للمواد الفنية خارج السيرفر تقع تحت بند الخيانة التكتيكية وعقوبتها <span class="warning">النفي الفوري</span>.</p>
             </div>
+
+            <!-- بروتوكول 09 -->
+            <div class="rule-card">
+                <span class="protocol-num">PRT_09</span>
+                <h3>الميدان الرسمي</h3>
+                <p>تُجرى جميع الاختبارات والمباريات التقييمية حصرياً عبر منصة <b>Chess.com</b>. أي مواجهة تتم خارج هذا النطاق الرقمي المعتمد تعد لاغية, ولا يتم قيدها في السجلات التاريخية للغرفة البيضاء.</p>
+            </div>
+            
         </section>
 
         <footer>
-            THE WHITE ROOM © 2026 // ALL RULES ARE ABSOLUTE
+            THE WHITE ROOM © 2026 // ALL RULES ARE ABSOLUTE // SYSTEM_CODE: WR-8891
         </footer>
     </div>
 </body>
