@@ -61,17 +61,12 @@
         .input-field{width:100%;background:rgba(255,255,255,.03);border:1px solid rgba(212,175,55,.2);border-radius:12px;padding:12px 16px;color:#fff;outline:none;transition:border-color .3s;font-family:'Cairo',sans-serif}
         .input-field:focus{border-color:var(--accent)}
         .input-field::placeholder{color:#6a6a6a}
-        .whisper{position:fixed;bottom:20px;left:20px;z-index:2000;font-family:'Cairo',sans-serif;font-size:.7rem;color:rgba(212,175,55,.2);max-width:200px;pointer-events:none;transition:opacity .8s}
         ::-webkit-scrollbar{width:6px}
         ::-webkit-scrollbar-track{background:#000}
         ::-webkit-scrollbar-thumb{background:#2a2a1a;border-radius:10px}
         ::-webkit-scrollbar-thumb:hover{background:var(--accent)}
         .justify-text{text-align:justify}
         .hero-border{border-right:2px solid var(--accent);padding-right:24px}
-        .threat-container{display:flex;justify-content:center;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem;font-family:'Orbitron',sans-serif;font-size:.7rem;color:#4a5b72}
-        .threat-value{font-weight:700;min-width:100px;text-align:center;transition:color .4s,text-shadow .4s}
-        .threat-bar{width:60px;height:3px;background:#1a1a1a;position:relative}
-        .threat-fill{position:absolute;top:0;left:0;height:100%;width:20%;background:#d4af37;box-shadow:0 0 8px #d4af37;transition:width .6s,background .6s,box-shadow .6s}
     </style>
 </head>
 <body>
@@ -96,14 +91,9 @@
         <section id="heroSection" class="container mx-auto px-6 md:px-12 py-16 md:py-24">
             <div class="mono-label mb-6">// ELITE_CONSTITUTION: WHITE_ROOM_CORE</div>
             <h1 class="heading-huge text-white mb-8">ELITE <br><span class="text-transparent stroke-text">CONSTITUTION</span></h1>
-            <div class="threat-container" aria-live="polite">
-                <span>THREAT LEVEL:</span>
-                <span class="threat-value" id="threatLevel">منخفض</span>
-                <div class="threat-bar"><div class="threat-fill" id="threatFill"></div></div>
-            </div>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-end mt-12">
                 <p class="text-slate-300 text-lg md:text-xl leading-relaxed hero-border justify-text">
-                    دستور النخبة هو القانون الأسمى. هنا تُصنع القرارات، وتُراقب النتائج، ويُحاسب المقصرون بلا رحمة. البقاء للقمة وحدها، والسقوط لمن تخاذل.
+                    دستور النخبة هو القانون الأسمى. هنا تُصنع القرارات وتُراقب النتائج ويُحاسب المقصر بلا رحمة. البقاء للقمة وحدها، والسقوط لمن تخاذل.
                 </p>
                 <div class="flex flex-wrap gap-4">
                     <button class="btn-elite" id="actionExplore">تصفح البروتوكولات</button>
@@ -115,7 +105,7 @@
             <div class="border-b border-white/5 pb-6 mb-12">
                 <div class="mono-label mb-2">// ELITE_PROTOCOLS</div>
                 <h2 class="text-3xl md:text-4xl font-black text-white">قوانين النخبة <span class="text-yellow-500 font-light italic">لا تقبل التأويل</span></h2>
-                <p class="text-slate-400 mt-2 text-sm">اضغط على أي كارت لقراءة البروتوكول كاملاً. <span class="text-pink-400 font-bold">الوردي = حماية الأعضاء.</span> <span class="text-slate-300 font-bold">الفضي = كيان النخبة.</span></p>
+                <p class="text-slate-400 mt-2 text-sm">اضغط على أي بطاقة لقراءة البروتوكول كاملاً. <span class="text-pink-400 font-bold">الوردي = حماية الأعضاء.</span> <span class="text-slate-300 font-bold">الفضي = كيان النخبة.</span></p>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="cardGrid">
                 <div class="glass-node-card entity-card" data-target="charter"><div class="text-3xl mb-4">📜</div><span class="text-[10px] font-bold block mb-1 text-slate-300" style="font-family:'Orbitron';">CHARTER</span><h3 class="text-lg font-bold text-slate-300 mb-2">ميثاق النخبة</h3><p class="text-slate-400 text-xs line-clamp-2">الدستور الأسمى والفلسفة العليا.</p></div>
@@ -150,112 +140,70 @@
             <div class="text-[10px] tracking-wider opacity-40" style="font-family:'Orbitron';">© 2026 ELITE_CONSTITUTION — NO MERCY</div>
         </div>
     </footer>
-    <div class="whisper" id="dynamicWhisper" aria-hidden="true">"القمة لا تتسع للضعفاء."</div>
     <script>
         (function() {
             const clubLink = 'https://n9.cl/woajv';
             const whiteRoomData = {
                 charter: {
                     title: "ميثاق النخبة",
-                    body: `<div class="max-w-4xl mx-auto"><span class="mono-label silver block mb-2">// CHARTER</span><h3 class="text-3xl font-black text-white mb-6">الدستور الأسمى</h3><p class="text-slate-300 leading-relaxed mb-4 justify-text">النخبة ليست رتبة، بل <b>حالة عقلية</b>. أنت هنا لأنك تجاوزت حدود المبتدئين، وأثبت أن المنطق البارد والتحليل الاستراتيجي يجريان في عروقك.</p><p class="text-slate-300 leading-relaxed mb-4 justify-text">هذا الميثاق هو <b>القانون الأعلى</b> الذي لا يقبل التأويل. كل بروتوكول، كل قاعدة، وكل عقوبة تنبثق من هذا الدستور. لا مكان للعواطف، لا مجال للأعذار، ولا نجاة لضعيف الإرادة.</p><p class="text-slate-300 leading-relaxed justify-text">في النخبة، <b>البقاء للأصلح</b>. تُراقب كل حركة، تُحلل كل نتيجة، ويُحاسب المقصر بلا رحمة. من يثبت جدارته يُخلَّد في سجل الشرف، ومن يتراجع يُسقط إلى طبقة المبتدئين بلا عودة. <b>تذكّر:</b> القمة لا تتسع للضعفاء. أنت هنا لأنك الأفضل، فكن على قدر المسؤولية.</p></div>`
+                    body: `<div class="max-w-4xl mx-auto"><span class="mono-label silver block mb-2">// CHARTER</span>
+                    <h3 class="text-3xl font-black text-white mb-6">الدستور الأسمى</h3>
+                    <p class="text-slate-300 leading-relaxed mb-4 justify-text">النخبة ليست مجرد لقب، بل <b>طريقة تفكير</b>. أنت هنا لأنك تخطيت حدود المبتدئين، وأثبت أن التفكير البارد والتحليل الاستراتيجي يسريان في دمك.</p>
+                    <p class="text-slate-300 leading-relaxed mb-4 justify-text">هذا الميثاق هو <b>القانون الأعلى</b>، لا جدال فيه. كل بروتوكول وكل قاعدة وكل عقوبة تنبع من هذا الدستور. لا مكان للعواطف، لا أعذار، ولا نجاة لضعيف الإرادة.</p>
+                    <p class="text-slate-300 leading-relaxed justify-text">في النخبة، <b>البقاء للأصلح</b>. كل حركة تُراقب، كل نتيجة تُحلل، والمقصر يُحاسب بلا شفقة. من يثبت جدارته يُخلد في سجل الشرف، ومن يتراجع يسقط إلى المبتدئين بلا رجعة. <b>تذكر:</b> القمة لا تسع الضعفاء. أنت هنا لأنك الأفضل، فكن على قدر المسؤولية.</p></div>`
                 },
                 entity: {
                     title: "كيان النخبة",
-                    body: `<div class="max-w-4xl mx-auto"><span class="mono-label silver block mb-2">// PHIL_01</span><h3 class="text-3xl font-black text-white mb-6">فلسفة الذات العليا</h3><p class="text-slate-300 leading-relaxed mb-4 justify-text">عندما وصلت إلى هنا، لم تعد ذلك الشخص العادي. أنت الآن <b>كيان آخر</b>.</p><p class="text-slate-300 leading-relaxed mb-4 justify-text">عقلك لم يعد يتبع شهواته، بل <b>يُخضع كل شيء لمنطقه</b>. الشهوات، الرغبات، المغريات… كلها أدوات تُستخدم لمصلحتك الاستراتيجية، لا أن تكون أنت عبداً لها.</p><p class="text-slate-300 leading-relaxed mb-4 justify-text">النخبة الحقيقية لا تُلهى بالرغبات، بل <b>تُسخّر كل ما حولها</b> لخدمة هدفها. جسدك وعقلك أصبحا آلة واحدة: لا تضعف، لا تنشغل، لا تتبع.</p><p class="text-slate-300 leading-relaxed justify-text"><b>تذكّر:</b> من يتحكم في رغباته يتحكم في كل شيء. أنت لم تصل إلى القمة لتنشغل بالتفاهات، بل لتجعل القمة تسجد لإرادتك. <b>كُن الكيان الذي لا يُقهر.</b></p></div>`
+                    body: `<div class="max-w-4xl mx-auto"><span class="mono-label silver block mb-2">// PHIL_01</span>
+                    <h3 class="text-3xl font-black text-white mb-6">فلسفة الذات العليا</h3>
+                    <p class="text-slate-300 leading-relaxed mb-4 justify-text">منذ أن وصلت إلى هنا، لم تعد الشخص نفسه. أنت الآن <b>كيان مختلف</b>.</p>
+                    <p class="text-slate-300 leading-relaxed mb-4 justify-text">عقلك لم يعد خادماً لشهواتك، بل أصبح <b>يسيّر كل شيء بمنطقه</b>. الشهوات والرغبات والمغريات… كلها أدوات تستعملها لخدمة هدفك الاستراتيجي، لا لتكون أسيراً لها.</p>
+                    <p class="text-slate-300 leading-relaxed mb-4 justify-text">النخبوي الحقيقي لا تلهيه الرغبات، بل <b>يسخّر كل ما حوله</b> لخدمة غايته. جسدك وعقلك صارا آلة واحدة: لا تضعف، لا تنشغل، لا تتبع أحداً.</p>
+                    <p class="text-slate-300 leading-relaxed justify-text"><b>تذكر:</b> من يتحكم في رغباته يتحكم في كل شيء. أنت لم تبلغ القمة لتنشغل بالتفاهات، بل لتجعل القمة تحت إرادتك. <b>كن الكيان الذي لا يُقهر.</b></p></div>`
                 },
-                prt01: { title: "بروتوكول الوصاية", body: `<div class="max-w-4xl mx-auto"><span class="mono-label text-yellow-500 block mb-2">// PRT_01</span><h3 class="text-3xl font-black text-white mb-6">حق الإشراف</h3><p class="text-slate-300 leading-relaxed justify-text">فقط <b>أفضل ثلاثة في النخبة</b> يحق لهم تدريب المبتدئين. الشرط الوحيد: <b>رفع تقارير فورية لكل جلسة تدريب</b> متضمنة روابط المباريات. أي تقصير يسقط حق الوصاية فوراً.</p></div>` },
-                prt02: { title: "مرسوم الصعود", body: `<div class="max-w-4xl mx-auto"><span class="mono-label text-yellow-500 block mb-2">// PRT_02</span><h3 class="text-3xl font-black text-white mb-6">كيف تصل إلى هنا؟</h3><p class="text-slate-300 leading-relaxed justify-text">يُرفع المبتدئ إلى النخبة عند احتلاله <b>المركز الأول، الثاني، أو الثالث</b> في قائمة شرف المبتدئين <b>لـ 4 أسابيع متتالية</b>. تراجع يوم واحد يعيد العداد إلى الصفر.</p></div>` },
-                prt03: { title: "وتيرة البقاء", body: `<div class="max-w-4xl mx-auto"><span class="mono-label text-yellow-500 block mb-2">// PRT_03</span><h3 class="text-3xl font-black text-white mb-6">الحد الأدنى للنشاط</h3><p class="text-slate-300 leading-relaxed justify-text">على كل نخبوي أن يخوض <b>7 مباريات رسمية على الأقل أسبوعياً</b>. عدم الالتزام بهذا الرقم يؤدي إلى <span class="text-red-500 font-bold">الإنزال الفوري</span> إلى طبقة المبتدئين.</p></div>` },
+                prt01: { title: "بروتوكول الوصاية", body: `<div class="max-w-4xl mx-auto"><span class="mono-label text-yellow-500 block mb-2">// PRT_01</span><h3 class="text-3xl font-black text-white mb-6">حق الإشراف</h3><p class="text-slate-300 leading-relaxed justify-text"><b>أفضل ثلاثة في النخبة فقط</b> لهم الحق في تدريب المبتدئين. الشرط الوحيد: <b>رفع تقرير فوري بعد كل جلسة تدريب</b> مرفقاً به روابط المباريات. أي تقصير يسقط حق الوصاية فوراً.</p></div>` },
+                prt02: { title: "مرسوم الصعود", body: `<div class="max-w-4xl mx-auto"><span class="mono-label text-yellow-500 block mb-2">// PRT_02</span><h3 class="text-3xl font-black text-white mb-6">كيف تصل إلى هنا؟</h3><p class="text-slate-300 leading-relaxed justify-text">يُرقى المبتدئ إلى النخبة عند احتلاله <b>المركز الأول أو الثاني أو الثالث</b> في قائمة شرف المبتدئين <b>لمدة 4 أسابيع متواصلة</b>. أي تراجع ولو ليوم واحد يعيد العداد للصفر.</p></div>` },
+                prt03: { title: "وتيرة البقاء", body: `<div class="max-w-4xl mx-auto"><span class="mono-label text-yellow-500 block mb-2">// PRT_03</span><h3 class="text-3xl font-black text-white mb-6">الحد الأدنى للنشاط</h3><p class="text-slate-300 leading-relaxed justify-text">كل نخبوي ملزم بخوض <b>7 مباريات رسمية على الأقل أسبوعياً</b>. عدم الالتزام بهذا العدد يؤدي إلى <span class="text-red-500 font-bold">الإنزال الفوري</span> إلى طبقة المبتدئين.</p></div>` },
                 prt04: { title: "باب التحدي", body: `<div class="max-w-4xl mx-auto"><span class="mono-label text-yellow-500 block mb-2">// PRT_04</span><h3 class="text-3xl font-black text-white mb-6">قوانين المواجهات</h3><p class="text-slate-300 leading-relaxed justify-text">يحق للمبتدئ تحدي صاحب المركز الأخير في النخبة <b>مرتين شهرياً</b>. داخل النخبة، يحق للاعب تحدي من يسبقه مباشرة <b>مرة أسبوعياً</b>. <b>الخاسر يتبادل المركز مع منافسه.</b></p></div>` },
-                prt05: { title: "منحنى التطور", body: `<div class="max-w-4xl mx-auto"><span class="mono-label text-yellow-500 block mb-2">// PRT_05</span><h3 class="text-3xl font-black text-white mb-6">الركود = هبوط</h3><p class="text-slate-300 leading-relaxed justify-text">كل عضو في النخبة ملزم بتقديم <b>تقارير تحليل أسبوعية</b> عن أخطائه. إذا بقي تصنيفه ثابتاً أو هبط لمدة 45 يوماً دون مبرر، يتم <span class="text-red-500 font-bold">إنزاله فوراً</span>.</p></div>` },
-                prt06: { title: "قسم النزاهة", body: `<div class="max-w-4xl mx-auto"><span class="mono-label text-yellow-500 block mb-2">// PRT_06</span><h3 class="text-3xl font-black text-white mb-6">الغش = نهاية</h3><p class="text-slate-300 leading-relaxed justify-text">استخدام المحركات أو أي أدوات مساعدة <b>جريمة لا تغتفر</b>. أنظمتنا ترصد أي تلاعب، والعقوبة <span class="text-red-500 font-bold">شطب نهائي مع العار</span> من جميع السجلات.</p></div>` },
-                prt07: { title: "ميثاق الصمت", body: `<div class="max-w-4xl mx-auto"><span class="mono-label text-yellow-500 block mb-2">// PRT_07</span><h3 class="text-3xl font-black text-white mb-6">العواطف ممنوعة</h3><p class="text-slate-300 leading-relaxed justify-text">قنوات النخبة للتحليل المنطقي البحت. أي <b>انفعال أو احتفال أو إحباط</b> يكلفك خصم 5 نقاط من تقييمك. العقل البارد هو العملة الوحيدة هنا.</p></div>` },
-                prt08: { title: "جدار العزل", body: `<div class="max-w-4xl mx-auto"><span class="mono-label text-yellow-500 block mb-2">// PRT_08</span><h3 class="text-3xl font-black text-white mb-6">المواد سرية</h3><p class="text-slate-300 leading-relaxed justify-text">كل الخطط والتحليلات ودراسات نهاية الأدوار هي <b>ملكية فكرية حصرية</b> للمنشأة. تسريب أي مادة خارج النطاق المؤمن عقوبته <span class="text-red-500 font-bold">النفي الفوري والتشهير</span>.</p></div>` },
+                prt05: { title: "منحنى التطور", body: `<div class="max-w-4xl mx-auto"><span class="mono-label text-yellow-500 block mb-2">// PRT_05</span><h3 class="text-3xl font-black text-white mb-6">الركود = هبوط</h3><p class="text-slate-300 leading-relaxed justify-text">كل عضو في النخبة ملزم بتقديم <b>تقارير تحليل أسبوعية</b> عن أخطائه. إذا بقي تصنيفه ثابتاً أو هبط لمدة 45 يوماً دون سبب مقنع، يُنزل <span class="text-red-500 font-bold">فوراً</span>.</p></div>` },
+                prt06: { title: "قسم النزاهة", body: `<div class="max-w-4xl mx-auto"><span class="mono-label text-yellow-500 block mb-2">// PRT_06</span><h3 class="text-3xl font-black text-white mb-6">الغش = نهاية</h3><p class="text-slate-300 leading-relaxed justify-text">استعمال المحركات أو أي أدوات مساعدة <b>جريمة لا تُغتفر</b>. أنظمتنا تكشف أي تلاعب، والعقوبة <span class="text-red-500 font-bold">شطب نهائي مع العار</span> من جميع السجلات.</p></div>` },
+                prt07: { title: "ميثاق الصمت", body: `<div class="max-w-4xl mx-auto"><span class="mono-label text-yellow-500 block mb-2">// PRT_07</span><h3 class="text-3xl font-black text-white mb-6">العواطف ممنوعة</h3><p class="text-slate-300 leading-relaxed justify-text">قنوات النخبة للتحليل المنطقي الصرف. أي <b>انفعال أو احتفال أو إحباط</b> يكلفك خصم 5 نقاط من تقييمك. العقل البارد هو العملة الوحيدة هنا.</p></div>` },
+                prt08: { title: "جدار العزل", body: `<div class="max-w-4xl mx-auto"><span class="mono-label text-yellow-500 block mb-2">// PRT_08</span><h3 class="text-3xl font-black text-white mb-6">المواد سرية</h3><p class="text-slate-300 leading-relaxed justify-text">كل الخطط والتحليلات ودراسات نهاية الأدوار هي <b>ملكية حصرية</b> للمنشأة. تسريب أي مادة خارج النطاق المؤمن عقوبته <span class="text-red-500 font-bold">النفي الفوري والتشهير</span>.</p></div>` },
                 prt09: { title: "ساحة الاختبار", body: `<div class="max-w-4xl mx-auto"><span class="mono-label text-yellow-500 block mb-2">// PRT_09</span><h3 class="text-3xl font-black text-white mb-6">المنصة الوحيدة</h3><p class="text-slate-300 leading-relaxed justify-text">جميع المواجهات والتقييمات تتم حصرياً عبر <b>Chess.com</b>. أي مباراة خارج هذه المنصة لا تُحتسب ولا تُسجل في تاريخ النخبة.</p></div>` },
                 prt10: { title: "مرسوم التبديل الإجباري", body: `<div class="max-w-4xl mx-auto"><span class="mono-label text-yellow-500 block mb-2">// PRT_10</span><h3 class="text-3xl font-black text-white mb-6">الغربلة الدورية</h3><p class="text-slate-300 leading-relaxed justify-text">كل 4 أسابيع، <b>يهبط أقل 3 أعضاء تصنيفاً</b> من النخبة إلى المبتدئين، <b>ويصعد أفضل 3 مبتدئين</b> ليحلوا محلهم. هذا التبديل يحافظ على نقاء القمة.</p></div>` },
                 prt11: { title: "تحدي النجاة", body: `<div class="max-w-4xl mx-auto"><span class="mono-label text-yellow-500 block mb-2">// PRT_11</span><h3 class="text-3xl font-black text-white mb-6">المباراة الفاصلة</h3><p class="text-slate-300 leading-relaxed justify-text">في نهاية كل أسبوع، <b>صاحب المركز الأخير في النخبة</b> يُجبر على مواجهة <b>صاحب المركز الرابع في المبتدئين</b>. <span class="text-red-500 font-bold">الخاسر يغادر النخبة فوراً.</span></p></div>` },
                 prt12: { title: "تشريح الهزيمة", body: `<div class="max-w-4xl mx-auto"><span class="mono-label text-yellow-500 block mb-2">// PRT_12</span><h3 class="text-3xl font-black text-white mb-6">فيديو إجباري للخاسر</h3><p class="text-slate-300 leading-relaxed justify-text">أي نخبوي يخسر مباراتين رسميتين متتاليتين، <b>يُجبر على تسجيل فيديو كامل للمباراة</b> وإرساله إلى قناة النخبة. <b>يُمنع التحليل الشخصي</b>؛ الهدف أن تتولى النخبة تشريح الخطأ بشكل جماعي.</p></div>` },
                 safety: {
-                    title: "بروتوكول حماية الأعضاء",
+                    title: "بروتوكول حماية الأعضاء (16 بنداً)",
                     body: `<div class="max-w-4xl mx-auto">
                 <span class="mono-label pink block mb-2">// SAFE_01</span>
-                <h3 class="text-3xl font-black text-white mb-6">قوانين الأمان والخصوصية الكاملة</h3>
-                <div class="space-y-4 text-slate-300 justify-text">
-                    <div class="p-3 bg-white/5 border border-pink-500/20 rounded-xl">
-                        <b>S01 • التواصل المُسيء والمُحرّم</b><br>
-                        <span class="text-red-500 font-bold">أبرئ نفسي أمام الله من أي ذنب.</span><br>
-                        • أي تواصل بين ذكر وأنثى (في العام أو الخاص) خارج النطاق التدريبي = <span class="text-red-500 font-bold">مؤبد فوري</span>.<br>
-                        • أي إهانة أو سب أو إساءة موثقة بدليل (سكرين شوت) في أي محادثة = <span class="text-red-500 font-bold">مؤبد فوري</span>.<br>
-                        • يتم حذف الرسائل المخالفة فور رصدها. لا مكان لقلة الأدب.
-                    </div>
-                    <div class="p-3 bg-white/5 border border-pink-500/20 rounded-xl">
-                        <b>S02 • آلية الشكوى الرسمية</b><br>
-                        شكوى مدعومة بـ <b>4 شهود أو أكثر</b> تُحفظ العضو تحت التحقيق 72 ساعة، ولا يُتخذ قرار إلا بعد اكتمال التحقيق.
-                    </div>
-                    <div class="p-3 bg-white/5 border border-pink-500/20 rounded-xl">
-                        <b>S03 • المكيدة الجماعية</b><br>
-                        شكوى كيدية + شهود متواطئون = <span class="text-red-500 font-bold">مؤبد للجميع</span>.
-                    </div>
-                    <div class="p-3 bg-white/5 border border-pink-500/20 rounded-xl">
-                        <b>S04 • استغلال الشهود</b><br>
-                        الشاكي يستغل الشهود = هو وحده يتحمل المؤبد، والشهود يُعفون بعد التحقيق.
-                    </div>
-                    <div class="p-3 bg-white/5 border border-pink-500/20 rounded-xl">
-                        <b>S05 • التحرش اللفظي والإيحاءات</b><br>
-                        أي كلمة أو إيحاء غير لائق = <span class="text-red-500 font-bold">مؤبد فوري</span>.
-                    </div>
-                    <div class="p-3 bg-white/5 border border-pink-500/20 rounded-xl">
-                        <b>S06 • الخصوصية المطلقة</b><br>
-                        طلب صور أو معلومات شخصية = <span class="text-red-500 font-bold">مؤبد</span>.
-                    </div>
-                    <div class="p-3 bg-white/5 border border-pink-500/20 rounded-xl">
-                        <b>S07 • حق المرافقة</b><br>
-                        يحق لأي عضو طلب مرافقة نخبوي في أي نقاش، ويُلبى فوراً.
-                    </div>
-                    <div class="p-3 bg-white/5 border border-pink-500/20 rounded-xl">
-                        <b>S08 • المساواة المطلقة</b><br>
-                        لا معاملة تفضيلية. المعيار الوحيد هو <b>الأداء الرقمي</b>.
-                    </div>
-                    <div class="p-3 bg-white/5 border border-pink-500/20 rounded-xl">
-                        <b>S09 • حظر الإسقاطات الشخصية</b><br>
-                        أي تعليق ينتقص من قدرات عضو = مخالفة، والتكرار = <span class="text-red-500 font-bold">طرد</span>.
-                    </div>
-                    <div class="p-3 bg-white/5 border border-pink-500/20 rounded-xl">
-                        <b>S10 • قناة التقارير السرية</b><br>
-                        بلاغات حساسة عبر قناة مشفرة للثلاثة الأوائل في النخبة.
-                    </div>
-                    <div class="p-3 bg-white/5 border border-pink-500/20 rounded-xl">
-                        <b>S11 • حماية المُبلِّغ</b><br>
-                        الانتقام من مُبلِّغ = <span class="text-red-500 font-bold">طرد فوري</span>. يُمنع ذكر اسمه دون إذن.
-                    </div>
-                    <div class="p-3 bg-white/5 border border-pink-500/20 rounded-xl">
-                        <b>S12 • منع الإحراج العلني</b><br>
-                        النقد الفني للمباراة فقط، وليس لشخص العضو أو أسلوبه.
-                    </div>
-                    <div class="p-3 bg-white/5 border border-pink-500/20 rounded-xl">
-                        <b>S13 • تعهد الطرفين</b><br>
-                        لا شهود = يُحفظ البلاغ بتعهد الطرفين. تكرار البلاغ = تحقيق رسمي.
-                    </div>
-                    <div class="p-3 bg-white/5 border border-pink-500/20 rounded-xl">
-                        <b>S14 • العقوبات التفاضلية</b><br>
-                        الضرر الجسيم = <span class="text-red-500 font-bold">طرد مشين</span> (طرد نهائي مع منع العودة بأي حساب آخر، ويُسجل السبب في سجل المنشأة).
-                    </div>
-                    <div class="p-3 bg-white/5 border border-pink-500/20 rounded-xl">
-                        <b>S15 • قسم الانضباط</b><br>
-                        كل عضو جديد يقرأ البروتوكول كاملاً ويوافق قبل أول مباراة.
-                    </div>
+                <h3 class="text-3xl font-black text-white mb-6">قوانين الأمان والخصوصية – صيغة واضحة</h3>
+                <div class="space-y-3 text-slate-300 justify-text">
+                    <div class="p-3 bg-white/5 border border-pink-500/20 rounded-xl"><b>S01 • التواصل المُحرَّم والإساءة</b><br><span class="text-red-500 font-bold">أبرئ نفسي أمام الله من أي ذنب.</span> أي تواصل خاص بين ذكر وأنثى خارج التدريب = طرد نهائي. وأي إهانة أو سب بدليل (سكرين شوت) = طرد فوري.</div>
+                    <div class="p-3 bg-white/5 border border-pink-500/20 rounded-xl"><b>S02 • آلية الشكوى</b><br>شكوى مع 4 شهود = تجميد 3 أيام حتى التحقق. لا عقوبة إلا بعد ثبوت المخالفة.</div>
+                    <div class="p-3 bg-white/5 border border-pink-500/20 rounded-xl"><b>S03 • المكيدة الجماعية</b><br>شكوى كاذبة بشهود متواطئين = طرد للجميع.</div>
+                    <div class="p-3 bg-white/5 border border-pink-500/20 rounded-xl"><b>S04 • استغلال الشهود</b><br>المشتكي يخدع الشهود = هو يتحمل الطرد والشهود يُعفون.</div>
+                    <div class="p-3 bg-white/5 border border-pink-500/20 rounded-xl"><b>S05 • التحرش اللفظي</b><br>إيحاء أو غزل أو تعليق غير لائق = طرد فوري.</div>
+                    <div class="p-3 bg-white/5 border border-pink-500/20 rounded-xl"><b>S06 • الخصوصية</b><br>طلب صور أو معلومات شخصية = طرد نهائي.</div>
+                    <div class="p-3 bg-white/5 border border-pink-500/20 rounded-xl"><b>S07 • حق المرافقة</b><br>أي عضو يشعر بعدم ارتياح يطلب مرافقة نخبوي.</div>
+                    <div class="p-3 bg-white/5 border border-pink-500/20 rounded-xl"><b>S08 • المساواة</b><br>لا تفضيل. المعيار = الأداء الرقمي فقط.</div>
+                    <div class="p-3 bg-white/5 border border-pink-500/20 rounded-xl"><b>S09 • حظر الإسقاطات</b><br>التعليق على قدرات شخص بسبب جنسه = مخالفة. التكرار = طرد.</div>
+                    <div class="p-3 bg-white/5 border border-pink-500/20 rounded-xl"><b>S10 • قناة سرية</b><br>للثلاثة الأوائل في النخبة، بلّغ بأمان.</div>
+                    <div class="p-3 bg-white/5 border border-pink-500/20 rounded-xl"><b>S11 • حماية المُبلِّغ</b><br>الانتقام من مُبلِّغ = طرد فوري. ممنوع ذكر اسمه.</div>
+                    <div class="p-3 bg-white/5 border border-pink-500/20 rounded-xl"><b>S12 • منع الإحراج</b><br>النقد للمباراة فقط، ليس للشخص أمام الجميع.</div>
+                    <div class="p-3 bg-white/5 border border-pink-500/20 rounded-xl"><b>S13 • تعهد الطرفين</b><br>بدون شهود = تعهد. تكرار البلاغ = تحقيق رسمي.</div>
+                    <div class="p-3 bg-white/5 border border-pink-500/20 rounded-xl"><b>S14 • العقوبات التفاضلية</b><br>ضرر كبير = "طرد مشين" (طرد + منع العودة + تسجيل السبب).</div>
+                    <div class="p-3 bg-white/5 border border-pink-500/20 rounded-xl"><b>S15 • قسم الانضباط</b><br>اقرأ القوانين ووافق قبل أول مباراة.</div>
+                    <div class="p-3 bg-white/5 border border-pink-500/20 rounded-xl"><b>S16 • الإبلاغ عن المخالفات غير المرئية</b><br>شاهدت مخالفة لم ينتبه لها المشرفون؟ بلّغ بدليل (سكرين شوت) = أنت حامي الغرفة. تُحفظ مكانتك وتُكرَّم، <b>وتكافأ بحصانة كاملة لمدة شهر (لا طرد ولا إنذار).</b></div>
                 </div>
             </div>`
                 },
-                aboutClub: { title: "ما هو النادي؟", body: `<div class="max-w-4xl mx-auto"><span class="mono-label text-yellow-500 block mb-2">// INFO</span><h3 class="text-3xl font-black text-white mb-6">شرح النادي على Chess.com</h3><p class="text-slate-300 leading-relaxed mb-6 justify-text"><b>النادي (Club)</b> على Chess.com هو مجموعة خاصة تجمع أعضاء النخبة. يشبه "المقر الرقمي" لنا على المنصة.<br><br><b>فوائده:</b><br>• تجد كل زملائك في مكان واحد.<br>• ننظم بطولات خاصة بنا ونرسل دعوات جماعية.<br>• تتابع تقييمات وتصنيفات الأعضاء.<br>• نناقش المباريات ونشارك التحليلات.</p></div>` },
+                aboutClub: { title: "ما هو النادي؟", body: `<div class="max-w-4xl mx-auto"><span class="mono-label text-yellow-500 block mb-2">// INFO</span><h3 class="text-3xl font-black text-white mb-6">شرح النادي على Chess.com</h3><p class="text-slate-300 leading-relaxed mb-6 justify-text"><b>النادي (Club)</b> على Chess.com هو مجموعة خاصة تجمع أعضاء النخبة. يشبه "مقرنا الرقمي" على المنصة.<br><br><b>فوائده:</b><br>• تجد كل زملائك في مكان واحد.<br>• ننظم بطولات خاصة بنا ونرسل دعوات جماعية.<br>• تتابع تقييمات وتصنيفات الأعضاء.<br>• نناقش المباريات ونشارك التحليلات.</p></div>` },
                 club: { title: "نادي النخبة على Chess.com", body: `<div class="max-w-4xl mx-auto"><span class="mono-label text-yellow-500 block mb-2">// JOIN</span><h3 class="text-3xl font-black text-white mb-6">النادي الرسمي للنخبة</h3><p class="text-slate-300 leading-relaxed mb-6 justify-text">هذا هو نادي النخبة الرسمي على Chess.com. من خلاله يمكنك المشاركة في البطولات، متابعة تصنيفات الأعضاء، والتنافس ضمن بيئة النخبة.</p><div class="text-center"><a href="${clubLink}" target="_blank" class="btn-elite">🏛️ انضم إلى النادي</a></div><p class="text-xs text-slate-500 mt-4 text-center">الرابط: ${clubLink}</p></div>` },
-                weekly: { title: "البطولة الأسبوعية - الجمعة", body: `<div class="max-w-4xl mx-auto"><span class="mono-label text-yellow-500 block mb-2">// EVENT</span><h3 class="text-3xl font-black text-white mb-6">بطولة الجمعة</h3><p class="text-slate-300 leading-relaxed mb-6 justify-text">تُقام بطولة أسبوعية كل جمعة على Chess.com. رابط البطولة يتغير أسبوعياً.<br><br>📌 <b>لمعرفة رابط البطولة الحالية، يرجى مراجعة وصف جروب النخبة على واتساب.</b> يتم نشر الرابط الجديد هناك مع بداية كل أسبوع.</p></div>` },
+                weekly: { title: "البطولة الأسبوعية - الجمعة", body: `<div class="max-w-4xl mx-auto"><span class="mono-label text-yellow-500 block mb-2">// EVENT</span><h3 class="text-3xl font-black text-white mb-6">بطولة الجمعة</h3><p class="text-slate-300 leading-relaxed mb-6 justify-text">تُقام بطولة أسبوعية كل جمعة على Chess.com. رابط البطولة يتغير أسبوعياً.<br><br>📌 <b>لمعرفة رابط البطولة الحالية، راجع وصف جروب النخبة على واتساب.</b> يتم نشر الرابط الجديد هناك مع بداية كل أسبوع.</p></div>` },
                 contact: { title: "تواصل القيادة", body: `<div class="max-w-2xl mx-auto text-center"><span class="mono-label text-yellow-500 block mb-2">// PRT_13</span><h3 class="text-3xl font-black text-white mb-6">إبلاغ أو استفسار</h3><p class="text-slate-300 mb-8">املأ البيانات وسيتم توجيهك فوراً إلى محادثة واتساب مع قيادة النخبة.</p><form id="contactForm" class="space-y-5" style="text-align:right;"><div><label class="block text-sm font-bold text-white mb-2">الاسم أو اللقب</label><input type="text" id="contactName" required placeholder="كيف نناديك؟" class="input-field"></div><div><label class="block text-sm font-bold text-white mb-2">الموضوع</label><textarea id="contactMessage" required rows="4" placeholder="اكتب رسالتك..." class="input-field"></textarea></div><button type="submit" class="btn-elite w-full justify-center text-center"><span>📱</span> إرسال إلى واتساب القيادة</button></form><p class="text-xs text-slate-500 mt-4">سيتم اختيار رقم قيادة عشوائي للتواصل معك مباشرة.</p></div>` }
             };
             const dynamicViewportContainer = document.getElementById('dynamicViewportContainer');
-            const threatLevelEl = document.getElementById('threatLevel');
-            const threatFillEl = document.getElementById('threatFill');
-            const whisperEl = document.getElementById('dynamicWhisper');
             function renderSectionContent(sectionId) {
                 if (!whiteRoomData[sectionId]) return;
                 document.querySelectorAll('.full-section-viewport.active').forEach(s => s.classList.remove('active'));
@@ -293,40 +241,6 @@
             document.getElementById('logoHome').addEventListener('click', e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
             document.getElementById('navHomeLink').addEventListener('click', e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
             document.getElementById('navGridLink').addEventListener('click', e => { e.preventDefault(); document.getElementById('nodesGridSection').scrollIntoView({ behavior: 'smooth' }); });
-            const threatStates = [
-                { text: 'منخفض جداً', color: '#d4af37', width: '20%', shadow: '0 0 10px #d4af37' },
-                { text: 'منخفض', color: '#c9a633', width: '35%', shadow: '0 0 12px #c9a633' },
-                { text: 'متوسط', color: '#ffcc00', width: '55%', shadow: '0 0 15px #ffcc00' },
-                { text: 'مرتفع', color: '#ff6600', width: '75%', shadow: '0 0 18px #ff6600' },
-                { text: 'حرج', color: '#ff3333', width: '95%', shadow: '0 0 25px #ff3333' }
-            ];
-            let threatIdx = 0;
-            const updateThreat = () => {
-                const s = threatStates[threatIdx];
-                threatLevelEl.textContent = s.text;
-                threatLevelEl.style.color = s.color;
-                threatLevelEl.style.textShadow = `0 0 12px ${s.color}`;
-                threatFillEl.style.width = s.width;
-                threatFillEl.style.background = s.color;
-                threatFillEl.style.boxShadow = s.shadow;
-                threatIdx = (threatIdx + 1) % threatStates.length;
-            };
-            updateThreat();
-            setInterval(updateThreat, 8000);
-            const whispers = [
-                "القمة لا تتسع للضعفاء.", "أنت هنا لأنك الأفضل، فأثبت ذلك.",
-                "كل خطأ يُحسب، وكل انتصار يُسجل.", "المراقبة لا تنام.",
-                "النخبة لا تشكو. النخبة تتكيف."
-            ];
-            let wIdx = 0;
-            setInterval(() => {
-                wIdx = (wIdx + 1) % whispers.length;
-                whisperEl.style.opacity = '0';
-                setTimeout(() => {
-                    whisperEl.textContent = `"${whispers[wIdx]}"`;
-                    whisperEl.style.opacity = '1';
-                }, 350);
-            }, 6000);
         })();
     </script>
 </body>
